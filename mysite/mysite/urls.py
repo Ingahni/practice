@@ -15,13 +15,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from myapp.views import main, another, main_article, uniq_article, article
+from django.urls import path, include, re_path
+from myapp.views import main, another, regex
 
 
 urlpatterns = [
     path('', main),
     path('some_url/', another),
     path('article/', include('myapp.urls')),
+    re_path(r'^(?P<text>\d{3}[a-zA-Z]{2,}$)', regex),
     path('admin/', admin.site.urls),
 ]
